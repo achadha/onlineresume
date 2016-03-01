@@ -18,7 +18,7 @@ var work = {
 };
 work.display = function() {
 	if(work.jobs.length > 0) {
-		for(job in work.jobs) {
+		for(var job in work.jobs) {
 			var jobObject = work.jobs[job];
 			var employerTitleConcat = HTMLworkEmployer.replace('%data%', jobObject.employer) + HTMLworkTitle.replace('%data%', jobObject.title);
 			$('#workExperience').append(HTMLworkStart);
@@ -71,18 +71,19 @@ var bio = {
 		"Flex",
 		"Spring",
 		"Hibernate"
-	]
+	],
+	"biopic": "images/fry.jpg"
 };
 bio.display = function() {
 	var formattedNameHeader = HTMLheaderName.replace("%data%", "Avneet Chadha");
 	var formattedRole = HTMLheaderRole.replace("%data%", "Software Engineer");	
 	$("#header").prepend(formattedRole);
 	$("#header").prepend(formattedNameHeader);
-	$('#header').append(HTMLbioPic.replace('%data%', 'images/fry.jpg'));
+	$('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
 
 	$('#header').append(HTMLskillsStart);
 	if(bio.skills && bio.skills.length > 0) {
-		for(skill in bio.skills) {
+		for(var skill in bio.skills) {
 			$('#skills').append(HTMLskills.replace("%data%", bio.skills[skill]));
 		}
 	}
@@ -100,7 +101,7 @@ var education = {
 	"onlineCourses": [{
 		"title": "Front-End Developer Nanodegree",
 		"school": "Udacity",
-		"dates": "2016",
+		"date": "2016",
 		"url": "https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001"
 	}]
 };
@@ -118,27 +119,11 @@ education.display = function() {
 	education.onlineCourses.forEach(function(course) {
 		$('.course-entry').append(HTMLonlineTitle.replace('%data%', course.title));
 		$('.course-entry').append(HTMLonlineSchool.replace('%data%', course.school));
-		$('.course-entry').append(HTMLonlineDates.replace('%data%', course.dates));
+		$('.course-entry').append(HTMLonlineDates.replace('%data%', course.date));
 		$('.course-entry').append(HTMLonlineURL.replace('%data%', course.url));
 	});
 
 };
-
-function inName() {
-	var res = bio.name.trim().split(' ');
-	var firstName = res[0];
-	var secondName = res[1];
-
-	firstName = firstName[0].toUpperCase() + firstName.slice(1).toLowerCase();
-	secondName = secondName.toUpperCase();
-
-	bio.name = firstName + ' ' + secondName;	
-}
-
-function displayInternationalizeButton() {
-	$('#main').append(internationalizeButton);
-}
-
 function displayMap() {
 	$('#mapDiv').append(googleMap);
 }
