@@ -78,6 +78,14 @@ var bio = {
 		var formattedRole = HTMLheaderRole.replace("%data%", "Software Engineer");	
 		$("#header").prepend(formattedRole);
 		$("#header").prepend(formattedNameHeader);
+
+		var contacts = bio.contacts;
+		Object.keys(contacts).forEach(function(contact) {
+			$('#topContacts').append(HTMLcontactGeneric.replace("%contact%", contact).replace("%data%", contacts[contact]));
+			$('#footerContacts').append(HTMLcontactGeneric.replace("%contact%", contact).replace("%data%", contacts[contact]));		
+		});
+		
+
 		$('#header').append(HTMLbioPic.replace('%data%', bio.biopic));
 
 		$('#header').append(HTMLskillsStart);
